@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Utiles.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Conex_Expert" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=(DESCRIPTION =    (ADDRESS_LIST =      (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.0.14)(PORT = 1521))    )    (CONNECT_DATA = (SID = dbgrinya))  );User Id=grinya_expert;Password=datadec;</Value>
+    </Setting>
+    <Setting Name="Conex_Quality" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=172.16.0.12;Initial Catalog=QC_PRUEBAS;Persist Security Info=True;User ID=dso;Password=dsodsodso</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

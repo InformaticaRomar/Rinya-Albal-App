@@ -1,0 +1,220 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Rinya_Albal_App.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <script type="text/javascript" src="../Scripts/jquery-1.10.2.min.js" ></script>
+    <title><%: Page.Title %> </title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--Para obtener más información sobre cómo agrupar scripts en ScriptManager, consulte http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Scripts de marco--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Scripts del sitio--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Informes</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Inicio</a></li>
+                        <% if (HttpContext.Current.User.Identity.IsAuthenticated)
+                            {
+                                if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ARQUEMAN"))
+                                {  %>
+                         <li id="Manzanares" >   
+                        <a id="dLabel_2" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Manzanares <span class="caret"></span></a>
+                             	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                       <li class="dropdown-submenu">
+                       
+                             <a tabindex="-1" href="#">Trazabilidad</a>
+           <ul class="dropdown-menu" >
+                  
+                                  <li><a runat="server" href="~/Manzanares/Trazabilidad/trazabilidad">Trazabilidad Lote</a></li>
+                        <li><a runat="server" href="~/Manzanares/Trazabilidad/trazabilidad_albaranes">Trazabilidad Albaranes</a></li>
+                                </ul>
+                                            </li>
+                                       <li class="divider"></li>
+                                  <li class="dropdown-submenu">
+                       
+                             <a tabindex="-1" href="#">Finanzas</a>
+                               
+                           <ul class="dropdown-menu" >
+                                <li><a runat="server" href="~/Manzanares/Finanzas/Confirming">Confirming</a></li>
+                                <li><a runat="server" href="~/Manzanares/Finanzas/Informes/Informe_Confirming">Datos Confirming</a></li>
+                               </ul>
+                                      </li>
+
+                                     </ul>
+                             </li>
+                            <% }
+                                if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN"))
+                                {  %>
+                                <li id="Comercial" >    
+            <a id="dLabel_Comer" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Comercial <span class="caret"></span></a>
+                                
+                                      
+                              
+                       
+                       	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                   
+                       <li class="dropdown-submenu">
+                             <a tabindex="-1" href="#">Tienda</a><ul class="dropdown-menu" >
+                                 <li><a runat="server" href="~/Comercial/Tienda/Sincronizar">Sincronizacion</a></li>
+                                 <li><a runat="server" href="~/Comercial/Tienda/Comprobacion Tickets">Comprobacion Tickets</a></li>
+                                 <li><a runat="server" href="~/Comercial/Tienda/Comprobacion_Stock">Comprobacion Stock</a></li>
+                                 
+
+                                </ul></li>
+                                <li class="divider"></li>
+                                  <li><a runat="server" href="~/Comercial/Motivo6_Precio0">Motivo 6 precio 0</a></li>
+                        <li><a runat="server" href="~/Comercial/Promociones">Promociones</a></li>
+                                <li><a runat="server" href="~/Comercial/Stock_0">Stock a 0</a></li>
+                        <li><a runat="server" href="~/Comercial/Ventas_Articulo_Pedido">Ventas Articulo Pedido</a></li>
+                                <li><a runat="server" href="~/Comercial/Ventas_Ruta_Usuario">Ventas Ruta Usuario</a></li>
+                               <li><a runat="server" href="~/Comercial/Textos_Expeciales">Textos Expeciales</a></li>
+                               <li><a runat="server" href="~/Comercial/Ventas_volumen">Ventas por volumen Rinya - Artesanos</a></li>
+                                 <li><a runat="server" href="~/Comercial/Ventas_volumen_romar">Ventas por volumen Romar</a></li>
+                               
+                               
+                                <li><a runat="server" href="~/Comercial/Perdida_Referencias">Perdida de Referencias</a></li>
+                                <li><a runat="server" href="~/Comercial/Facturacion">Informe Facturación</a></li>
+                               </ul>
+                        </li>
+                         <% }
+
+                             if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "PRODGEST") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "Operarios exp") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "Ctrl Stock") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "Encargados exp") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "Jefe exp") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "vtapedidos") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "EXP QUESO")) //EXP QUESO
+                             {  %>
+                                                                                          
+                    <li id="Logistica" >    
+            <a id="dLabel_1" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Logistica <span class="caret"></span></a>
+                      
+                       	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                  <li><a runat="server" href="~/Logistica/Ordenes_Carga">Informe Ordenes de Carga</a></li>
+                        <li><a runat="server" href="~/Logistica/Control_stock">Informe Control de Stock</a></li>
+                        <li><a runat="server" href="~/Logistica/integracion_agencia">Informe Integracion de Agencia</a></li>
+                            <li><a runat="server" href="~/Logistica/Control_Carga">Informe Control Carga</a></li>
+                                <li><a runat="server" href="~/Logistica/Faltas_pedidos_fechas">Informe pedidos fechas</a></li>
+                             <li class="divider"></li>
+                                  <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Foto Stock</a>
+                               
+                           <ul class="dropdown-menu" >
+                               <li><a runat="server" href="~/Logistica/FotoStock/FotostockDiario">Fotos Stock Diario</a></li>
+                               <li><a runat="server" href="~/Logistica/FotoStock/Movimientos_Ventas_Compras">Movimientos Compras - ventas</a></li>
+                               </ul>
+                                      </li>
+                               
+                               </ul>
+
+                        </li>
+                            <% }
+                                if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "vtapedidos"))
+                                {  %>
+                        <li id="Pedidos" >    
+                        <a id="dLabel_Ped" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Pedidos <span class="caret"></span></a>
+                      
+                       	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a runat="server" href="~/Pedidos/Pedidos_Tablet">Pedidos Tablet</a></li>
+                                 </ul>
+                        </li>
+                            <% }
+                                }
+                                if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN"))
+                                {  %>
+                          <li id="Produccion" >    
+                        <a id="dLabel_Rendimiento" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Produccion<span class="caret"></span></a>   
+                       	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a runat="server" href="~/Produccion/Fabricacion">Input Fabricacion</a></li>
+                               <li><a runat="server" href="~/Produccion/Listadp_formulas">Listado Despiece Articulo</a></li>
+                                 </ul>
+                        </li>
+
+                         <% }
+                             
+                               if (Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "ADMIN") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "COMPRAS") || Roles.IsUserInRole(HttpContext.Current.User.Identity.GetUserName(), "CALIDAD1"))
+                               {  %>
+                        <li id="Compras" >    
+                        <a id="dLabel_Compras" role="button" data-toggle="dropdown" class="dropdown-toggle"  data-target="#" >Compras <span class="caret"></span></a>
+                      
+                       	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a runat="server" href="~/Compras/Fuentes_Aprovisionamiento">Fuentes Aprovisionamiento</a></li>
+                               <li><a runat="server" href="~/Compras/Recepciones">Recepciones</a></li>
+                                 </ul>
+
+                        </li>
+                            <% } %>
+
+                       
+                              
+                              
+                              </ul>
+                
+                   
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                              
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="mailto:soporte@granjarinya.com">Registrarse</a></li>
+                                <li><a runat="server" href="~/Account/Logon">Iniciar sesión</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="#" title="Manage your account">Hola, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - InformesGranja Rinya</p>
+            </footer>
+        </div>
+    </form>
+</body>
+
+</html>
